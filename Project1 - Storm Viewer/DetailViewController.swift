@@ -51,7 +51,12 @@ class DetailViewController: UIViewController {
             return
         }
         
-        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        guard let safeSelectedImage = selectedImage else {
+            print("No image has been selected")
+            return
+        }
+        
+        let vc = UIActivityViewController(activityItems: [safeSelectedImage, image], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }
